@@ -17,8 +17,8 @@ public class ExpenseController {
     }
 
     @GetMapping("/expenses/{id}")
-    public String getExpenseById(@PathVariable("id") Long id){
-        return "The expense id is " + id;
+    public Expense getExpenseById(@PathVariable("id") Long id){
+        return expenseService.getExpenseById(id);
     }
 
     @DeleteMapping("/expenses")
