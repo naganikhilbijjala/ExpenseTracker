@@ -3,8 +3,7 @@ package org.nikhil.expensetracker.controller;
 import org.nikhil.expensetracker.entity.Expense;
 import org.nikhil.expensetracker.service.ExpenseService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -15,5 +14,15 @@ public class ExpenseController {
     @GetMapping("/expenses")
     public List<Expense> getAllExpenses(){
         return expenseService.getAllExpenses();
+    }
+
+    @GetMapping("/expenses/{id}")
+    public String getExpenseById(@PathVariable("id") Long id){
+        return "The expense id is " + id;
+    }
+
+    @DeleteMapping("/expenses")
+    public String deleteExpenseById(@RequestParam Long id){
+        return "Deleting the expense object by its id " + id;
     }
 }
