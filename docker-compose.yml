@@ -1,0 +1,29 @@
+version: "3.8"
+
+services:
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    networks:
+      - s-network
+
+  mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_USER: nikhil
+      MYSQL_PASSWORD: Nikhil@22
+      MYSQL_DB: nikhil
+    ports:
+      - 3306:3306
+    networks:
+      - s-network
+    volumes:
+      - mysql-s-data:/var/lib/mysql/data
+
+networks:
+  s-network:
+    driver: bridge
+
+volumes:
+  mysql-s-data:
