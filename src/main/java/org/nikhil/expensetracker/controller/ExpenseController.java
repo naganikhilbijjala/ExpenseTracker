@@ -3,6 +3,7 @@ package org.nikhil.expensetracker.controller;
 import org.nikhil.expensetracker.entity.Expense;
 import org.nikhil.expensetracker.service.ExpenseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,8 +14,9 @@ public class ExpenseController {
     @Autowired
     private ExpenseService expenseService;
     @GetMapping("/expenses")
-    public List<Expense> getAllExpenses(){
-        return expenseService.getAllExpenses();
+    public List<Expense> getAllExpenses(Pageable page){
+
+        return expenseService.getAllExpenses(page).toList();
     }
 
     @GetMapping("/expenses/{id}")
