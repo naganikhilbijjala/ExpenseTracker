@@ -1,6 +1,7 @@
 package org.nikhil.expensetracker.service;
 
 import org.nikhil.expensetracker.entity.Expense;
+import org.nikhil.expensetracker.exceptions.ResourceNotFoundException;
 import org.nikhil.expensetracker.repository.ExpenseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -24,7 +25,7 @@ public class ExpenseServiceImpl implements ExpenseService {
         if(expense.isPresent()){
             return expense.get();
         }
-        throw new RuntimeException("Expense is not found for the id " + id);
+        throw new ResourceNotFoundException("Expense is not found for the id " + id);
     }
 
     @Override
